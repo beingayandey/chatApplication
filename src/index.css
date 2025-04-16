@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+:root {
+  --default-white: #fff;
+  --default-black: #000;
+  --default-grey: #333;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.container {
+  max-width: 768px;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+}
+.content {
+  /* display: grid;
+  grid-template-rows: 56px 1fr 89px; */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+.main-body {
+  height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.message-list {
+  height: calc(100vh - (56px + 89px));
+  align-items: center;
+  padding: 8px 16px !important;
+  margin-top: 56px;
+  margin-bottom: 89px;
+}
+.message-list > div {
+  padding: 8px 0 !important;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #666 #999;
+  width: 100%;
+}
+.message-input-div {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 999;
+  max-width: 768px;
+  margin: 0 auto;
+  background-color: var(--default-white);
+}
+.message-list > div::-webkit-scrollbar {
+  width: 6px;
+  height: 30px;
+}
+
+.message-list > div::-webkit-scrollbar-track {
+  background: #999;
+}
+
+.message-list > div::-webkit-scrollbar-thumb {
+  background-color: #666;
+  border-radius: 15px;
+}
+.chat-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 999;
+  max-width: 768px;
+  margin: 0 auto;
+}
+.single-list {
+  gap: 16px;
+}
