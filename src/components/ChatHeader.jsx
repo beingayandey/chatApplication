@@ -7,6 +7,8 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
+import { Link } from "react-router-dom";
+
 const ChatHeader = ({ onToggleDrawer }) => {
   return (
     <Box sx={{ flexGrow: 1 }} className="chat-header">
@@ -25,7 +27,9 @@ const ChatHeader = ({ onToggleDrawer }) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             ChatApp
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Link to="/login" color="inherit">
+            Login
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
