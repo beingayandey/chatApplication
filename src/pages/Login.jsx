@@ -8,13 +8,13 @@ import {
   FormControlLabel,
   TextField,
   Typography,
-  Link,
   Divider,
   Card,
   Stack,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Google } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const StyledCard = styled(Card)(({ theme }) => ({
   maxWidth: 400,
@@ -103,7 +103,7 @@ const LoginPage = () => {
 
             <Typography mt={3} align="center">
               Don’t have an account?{" "}
-              <Link href="#" variant="body2">
+              <Link to="/signup" variant="body2">
                 Sign up
               </Link>
             </Typography>
