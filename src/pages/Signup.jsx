@@ -25,65 +25,31 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 
 const SignUp = () => {
-  const [emailError, setEmailError] = useState < boolean > false;
-  const [emailErrorMessage, setEmailErrorMessage] = useState < string > "";
-  const [passwordError, setPasswordError] = useState < boolean > false;
-  const [passwordErrorMessage, setPasswordErrorMessage] =
-    useState < string > "";
-  const [confirmPasswordError, setConfirmPasswordError] =
-    useState < boolean > false;
-  const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
-    useState < string > "";
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState({});
 
-  const validateInputs = () => {
-    const email = document.getElementById("email");
-    const password = document.getElementById("password");
-    const confirmPassword = document.getElementById("confirm-password");
-
-    let isValid = true;
-
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
-      setEmailError(true);
-      setEmailErrorMessage("Please enter a valid email address.");
-      isValid = false;
-    } else {
-      setEmailError(false);
-      setEmailErrorMessage("");
+  const validate = () => {
+    const newErrors = {};
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Enter a valid email";
     }
-
-    if (!password.value || password.value.length < 6) {
-      setPasswordError(true);
-      setPasswordErrorMessage("Password must be at least 6 characters long.");
-      isValid = false;
-    } else {
-      setPasswordError(false);
-      setPasswordErrorMessage("");
+    if (password.length < 6) {
+      newErrors.password = "Minimum 6 characters";
     }
-
-    if (!confirmPassword.value || confirmPassword.value !== password.value) {
-      setConfirmPasswordError(true);
-      setConfirmPasswordErrorMessage("Passwords do not match.");
-      isValid = false;
-    } else {
-      setConfirmPasswordError(false);
-      setConfirmPasswordErrorMessage("");
+    if (password !== confirmPassword) {
+      newErrors.confirmPassword = "Passwords do not match";
     }
-
-    return isValid;
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!validateInputs()) {
-      return;
-    }
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-      confirmPassword: data.get("confirm-password"),
-    });
-    // Add your sign-up logic here (e.g., API call)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+    console.log({ email, password, confirmPassword });
+    // Firebase sign-up logic goes here
   };
 
   return (
@@ -96,56 +62,46 @@ const SignUp = () => {
           alignItems: "center",
           justifyContent: "center",
           background: "linear-gradient(to right, #e3f2fd, #fff)",
-          padding: 2,
+          p: 2,
         }}
       >
         <StyledCard>
-          <Typography variant="h5" component="h1" gutterBottom>
+          <Typography variant="h5" gutterBottom>
             Create an Account 🚀
           </Typography>
-
           <Typography variant="body2" color="text.secondary" mb={3}>
             Join us by signing up today
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit} noValidate>
             <TextField
-              fullWidth
               label="Email"
-              margin="normal"
-              type="email"
-              name="email"
-              id="email"
-              autoComplete="email"
-              required
-              error={emailError}
-              helperText={emailErrorMessage}
-            />
-
-            <TextField
               fullWidth
+              margin="normal"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              error={!!errors.email}
+              helperText={errors.email}
+            />
+            <TextField
               label="Password"
-              margin="normal"
               type="password"
-              name="password"
-              id="password"
-              autoComplete="new-password"
-              required
-              error={passwordError}
-              helperText={passwordErrorMessage}
-            />
-
-            <TextField
               fullWidth
-              label="Confirm Password"
               margin="normal"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              error={!!errors.password}
+              helperText={errors.password}
+            />
+            <TextField
+              label="Confirm Password"
               type="password"
-              name="confirm-password"
-              id="confirm-password"
-              autoComplete="new-password"
-              required
-              error={confirmPasswordError}
-              helperText={confirmPasswordErrorMessage}
+              fullWidth
+              margin="normal"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              error={!!errors.confirmPassword}
+              helperText={errors.confirmPassword}
             />
 
             <Stack
@@ -158,27 +114,21 @@ const SignUp = () => {
                 control={<Checkbox />}
                 label="I agree to the terms"
               />
-              <Link href="#" variant="body2">
-                Need help?
-              </Link>
+              <Typography variant="body2">
+                <Link to="#">Need help?</Link>
+              </Typography>
             </Stack>
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 2, mb: 2 }}
-            >
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 2 }}>
               Sign Up
             </Button>
 
-            <Divider>OR</Divider>
+            <Divider sx={{ my: 2 }}>OR</Divider>
 
             <Button
               fullWidth
               variant="outlined"
               startIcon={<Google />}
-              sx={{ mt: 2 }}
               onClick={() => alert("Sign up with Google")}
             >
               Sign up with Google
@@ -186,7 +136,7 @@ const SignUp = () => {
 
             <Typography mt={3} align="center">
               Already have an account?{" "}
-              <Link to="/login" variant="body2">
+              <Link to="/login" style={{ textDecoration: "none" }}>
                 Login
               </Link>
             </Typography>
