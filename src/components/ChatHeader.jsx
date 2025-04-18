@@ -27,7 +27,7 @@ const ChatHeader = ({ onToggleDrawer }) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             ChatApp
           </Typography>
-          <Link to="/login" color="inherit">
+          <Link to="/login" color="inherit" className="login">
             Login
           </Link>
         </Toolbar>

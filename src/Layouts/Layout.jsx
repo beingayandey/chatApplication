@@ -4,6 +4,7 @@ import MessageList from "../components/MessageList";
 import MessageInput from "../components/MessageInput";
 import ChatHeader from "../components/ChatHeader";
 import SidebarMenu from "../components/SidebarMenu";
+import ChatPage from "../pages/ChatPage";
 
 const Layout = () => {
   const [messages, setMessages] = useState([
@@ -47,6 +48,7 @@ const Layout = () => {
   return (
     <div className="main-body">
       <div className="container">
+        <ChatPage />
         <SidebarMenu
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}

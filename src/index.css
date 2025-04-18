@@ -17,6 +17,7 @@ body {
   margin: 0 auto;
   height: 100%;
   width: 100%;
+  position: relative;
 }
 .content {
   /* display: grid;
@@ -83,7 +84,14 @@ body {
 .single-list {
   gap: 16px;
 }
-
+a {
+  text-decoration: none;
+  font-weight: 600;
+}
+.login {
+  text-transform: uppercase;
+  color: var(--default-white);
+}
 @media screen and (max-width: 575px) {
   body {
     font-size: 0.8rem !important;
