@@ -9,16 +9,18 @@ import {
   Avatar,
 } from "@mui/material";
 
-const SidebarMenu = ({ open, onClose, chats, onSelectChat, containerRef }) => {
+const SidebarMenu = ({ open, onClose, chats, onSelectChat, container }) => {
   return (
     <Drawer
       anchor="left"
       open={open}
-      className="chat-history-drawer"
       onClose={onClose}
-      container={containerRef.current}
+      container={container} // Pass the DOM element directly
+      ModalProps={{ keepMounted: true }} // Optimize for mobile
+      className="chat-history-drawer"
+      sx={{ "& .MuiDrawer-paper": { width: { xs: "80vw", sm: 280 } } }} // Responsive width
     >
-      <div style={{ width: 280 }}>
+      <div>
         <Typography variant="h6" p={2}>
           Recent Chats
         </Typography>
@@ -30,10 +32,19 @@ const SidebarMenu = ({ open, onClose, chats, onSelectChat, containerRef }) => {
               button
               key={chat.id}
               onClick={() => onSelectChat(chat.id)}
+              aria-label={`Select chat with ${chat.name}`}
             >
-              {" "}
-              <Avatar src="/broken-image.jpg" />
-              <ListItemText primary={chat.name} secondary={chat.lastMessage} />
+              <Avatar
+                src={chat.avatar || "/default-avatar.png"}
+                alt={chat.name}
+                sx={{ mr: 2 }}
+              />
+              <ListItemText
+                primary={chat.name}
+                secondary={chat.lastMessage}
+                primaryTypographyProps={{ noWrap: true }}
+                secondaryTypographyProps={{ noWrap: true }}
+              />
             </ListItem>
           ))}
         </List>

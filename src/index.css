@@ -93,13 +93,14 @@ a {
   text-transform: uppercase;
   color: var(--default-white);
 }
-.chat-history-drawer.css-2soe65-MuiModal-root-MuiDrawer-root {
+.chat-history-drawer.css-1vgq0qw-MuiModal-root-MuiDrawer-root {
   position: absolute;
 }
 .chat-history-drawer .css-4nmryk-MuiBackdrop-root-MuiModal-backdrop {
   position: absolute;
 }
-.chat-history-drawer.css-2soe65-MuiModal-root-MuiDrawer-root
+.chat-history-drawer
+  .css-2soe65-MuiModal-root-MuiDrawer-root
   .css-cyqh1t-MuiPaper-root-MuiDrawer-paper {
   position: absolute;
 }
