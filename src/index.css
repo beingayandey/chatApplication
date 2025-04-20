@@ -18,6 +18,7 @@ body {
   height: 100%;
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 .content {
   /* display: grid;
@@ -91,6 +92,16 @@ a {
 .login {
   text-transform: uppercase;
   color: var(--default-white);
+}
+.chat-history-drawer.css-2soe65-MuiModal-root-MuiDrawer-root {
+  position: absolute;
+}
+.chat-history-drawer .css-4nmryk-MuiBackdrop-root-MuiModal-backdrop {
+  position: absolute;
+}
+.chat-history-drawer.css-2soe65-MuiModal-root-MuiDrawer-root
+  .css-cyqh1t-MuiPaper-root-MuiDrawer-paper {
+  position: absolute;
 }
 @media screen and (max-width: 575px) {
   body {

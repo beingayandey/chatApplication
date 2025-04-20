@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Box } from "@mui/material";
 import MessageList from "../components/MessageList";
 import MessageInput from "../components/MessageInput";
@@ -13,7 +13,7 @@ const Layout = () => {
   ]);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeChatId, setActiveChatId] = useState("1");
-
+  const containerRef = useRef(null);
   const chats = [
     {
       id: "1",
@@ -47,13 +47,14 @@ const Layout = () => {
 
   return (
     <div className="main-body">
-      <div className="container">
+      <div className="container" ref={containerRef}>
         <ChatPage />
         <SidebarMenu
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}
           chats={chats}
           onSelectChat={handleSelectChat}
+          containerRef={containerRef}
         />
         <div className="content">
           <ChatHeader onToggleDrawer={() => setDrawerOpen(true)} />

@@ -9,12 +9,18 @@ import {
   Avatar,
 } from "@mui/material";
 
-const SidebarMenu = ({ open, onClose, chats, onSelectChat }) => {
+const SidebarMenu = ({ open, onClose, chats, onSelectChat, containerRef }) => {
   return (
-    <Drawer anchor="left" open={open} onClose={onClose}>
+    <Drawer
+      anchor="left"
+      open={open}
+      className="chat-history-drawer"
+      onClose={onClose}
+      container={containerRef.current}
+    >
       <div style={{ width: 280 }}>
         <Typography variant="h6" p={2}>
-          Chats
+          Recent Chats
         </Typography>
         <Divider />
         <List className="chat-list">
