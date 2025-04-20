@@ -94,15 +94,16 @@ a {
   color: var(--default-white);
 }
 .chat-history-drawer.css-1vgq0qw-MuiModal-root-MuiDrawer-root {
-  position: absolute;
+  position: absolute !important;
 }
 .chat-history-drawer .css-4nmryk-MuiBackdrop-root-MuiModal-backdrop {
-  position: absolute;
+  position: absolute !important;
 }
-.chat-history-drawer
-  .css-2soe65-MuiModal-root-MuiDrawer-root
-  .css-cyqh1t-MuiPaper-root-MuiDrawer-paper {
-  position: absolute;
+.chat-history-drawer .css-cyqh1t-MuiPaper-root-MuiDrawer-paper {
+  position: absolute !important;
+}
+.all-main {
+  margin: 80px 0;
 }
 @media screen and (max-width: 575px) {
   body {

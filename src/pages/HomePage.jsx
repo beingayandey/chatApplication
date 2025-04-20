@@ -1,7 +1,12 @@
 import React from "react";
+import HeaderSearch from "../components/HeaderSearch";
 
 const HomePage = () => {
-  return <></>;
+  return (
+    <>
+      <HeaderSearch />
+    </>
+  );
 };
 
 export default HomePage;
